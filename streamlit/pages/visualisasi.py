@@ -153,7 +153,7 @@ selected = option_menu(
 # CONTENT
 # =========================================================
 if selected == "Beranda":
-    st.switch_page(".../app.py")
+    st.switch_page("app.py")
 
 elif selected == "Data":
     st.switch_page("pages/data.py")
