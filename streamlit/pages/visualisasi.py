@@ -9,6 +9,7 @@ import io
 import base64
 from wordcloud import WordCloud
 import re
+from pathlib import Path
 
 st.set_page_config(
     page_title="Social Media Restrictions for Minors",
@@ -162,7 +163,8 @@ elif selected == "Visualisasi":
     # =========================================================
     # LOAD DATA
     # =========================================================
-    file_path = "../hasil_anotasi_lengkap.xlsx"
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
+    file_path = BASE_DIR / "hasil_anotasi_lengkap.xlsx"
     df_hasil_anotasi = pd.read_excel(file_path, sheet_name="Gabungan")
 
     df_hasil_anotasi["Text"] = df_hasil_anotasi["Text"].fillna("").astype(str)
