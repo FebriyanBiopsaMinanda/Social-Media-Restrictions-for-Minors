@@ -65,7 +65,8 @@ st.markdown("</div>", unsafe_allow_html=True)
 # =========================
 @st.cache_data
 def load_data():
-    file_path = Path(__file__).resolve().parents[1] / "hasil_anotasi_lengkap.xlsx"
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    file_path = BASE_DIR / "hasil_anotasi_lengkap.xlsx"
     df = pd.read_excel(file_path, sheet_name="Gabungan")
 
     cols_needed = [
