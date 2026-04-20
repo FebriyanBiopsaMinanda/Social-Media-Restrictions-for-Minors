@@ -64,7 +64,8 @@ st.markdown("</div>", unsafe_allow_html=True)
 # =========================
 @st.cache_data
 def load_data():
-    file_path = "../hasil_anotasi_lengkap.xlsx"
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
+    file_path = BASE_DIR / "hasil_anotasi_lengkap.xlsx"
     df = pd.read_excel(file_path, sheet_name="Gabungan")
 
     cols_needed = [
@@ -107,7 +108,7 @@ def ner_match_any_annotator(row, selected_ner):
 # CONTENT
 # =========================
 if selected == "Beranda":
-    st.switch_page(".../app.py")
+    st.switch_page("app.py")
 
 elif selected == "Data":
     df = load_data()
