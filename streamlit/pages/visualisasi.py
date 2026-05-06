@@ -10,6 +10,7 @@ import base64
 from wordcloud import WordCloud
 import re
 from pathlib import Path
+import json
 
 st.set_page_config(
     page_title="Social Media Restrictions for Minors",
