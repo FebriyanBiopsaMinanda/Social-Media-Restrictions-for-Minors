@@ -165,7 +165,16 @@ elif selected == "Visualisasi":
     # =========================================================
     BASE_DIR = Path(__file__).resolve().parent.parent.parent
     file_path = BASE_DIR / "hasil_anotasi_lengkap.xlsx"
+    iaaa_path = BASE_DIR / "iaaa.jsonl"
+    iaaa_text_path = BASE_DIR / "iaaa_textcat.jsonl"
+    
     df_hasil_anotasi = pd.read_excel(file_path, sheet_name="Gabungan")
+
+    with open(iaaa_path, "r") as file:
+        iaaa_data = json.load(file)
+        
+    with open(iaaa_text_path, "r") as file:
+        iaaa_text = json.load(file)
 
     df_hasil_anotasi["Text"] = df_hasil_anotasi["Text"].fillna("").astype(str)
     df_hasil_anotasi["annotator1"] = df_hasil_anotasi["annotator1"].fillna("Tidak Ada Label").astype(str)
@@ -365,7 +374,149 @@ elif selected == "Visualisasi":
     # =========================================================
     st.markdown(
         """
-        <div class='subsection-title'>Visualisasi Awal Data</div>
+        <div class='subsection-title'>Informasi Dataset</div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    col1, col2, col3, col4, col5 = st.columns(5)
+    
+    with col1:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Jumlah Data</div>
+                <div class="plot-area">
+                    <h2>{iaaa_data["n_coincident_examples"]}</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with col2:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Jumlah Annotator</div>
+                <div class="plot-area">
+                    <h2>{iaaa_data["n_annotators"]}</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with col3:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Pairwise Precision</div>
+                <div class="plot-area">
+                    <h2>{iaaa_data["pairwise_precision"]}</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with col4:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Pairwise Recall</div>
+                <div class="plot-area">
+                    <h2>{iaaa_data["pairwise_recall"]}</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with col5:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Pairwise F1-score</div>
+                <div class="plot-area">
+                    <h2>{iaaa_data["pairwise_f1"]}</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+    # =========================================================
+    # SECTION 2
+    # =========================================================
+    st.markdown(
+        """
+        <div class='subsection-title'>Percent Agreement</div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Penolakan Kebijakan</div>
+                <div class="plot-area">
+                    <h2>{(iaaa_text["PENOLAKAN_KEBIJAKAN"]["percent_agreement"] * 100):.2f}%</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with col2:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Dukungan Kebijakan</div>
+                <div class="plot-area">
+                    <h2>{(iaaa_text["DUKUNGAN_KEBIJAKAN"]["percent_agreement"] * 100):.2f}%</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with col3:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Kritik Pemerintahan</div>
+                <div class="plot-area">
+                    <h2>{(iaaa_text["KRITIK_PEMERINTAHAN"]["percent_agreement"] * 100):.2f}%</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with col4:
+        st.markdown(
+            f"""
+            <div class="plot-card">
+                <div class="viz-title">Netral</div>
+                <div class="plot-area">
+                    <h2>{(iaaa_text["PENOLAKAN_KEBIJAKAN"]["percent_agreement"] * 100):.2f}%</h2>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+    
+    # =========================================================
+    # SECTION 3
+    # =========================================================
+    st.markdown(
+        """
+        <div class='subsection-title'>Visualisasi Data</div>
         """,
         unsafe_allow_html=True
     )
@@ -414,7 +565,7 @@ elif selected == "Visualisasi":
     st.markdown("<br>", unsafe_allow_html=True)
 
     # =========================================================
-    # SECTION 2
+    # SECTION 4
     # =========================================================
     st.markdown(
         """
@@ -491,8 +642,8 @@ elif selected == "Visualisasi":
     
     st.markdown("""<br>""",unsafe_allow_html=True)
     
-        # =========================================================
-    # SECTION 3
+    # =========================================================
+    # SECTION 5
     # =========================================================
     st.markdown(
         """
@@ -652,6 +803,13 @@ st.markdown(
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        
+        .plot-area h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            text-align: center;
         }
 
         .plot-img {
