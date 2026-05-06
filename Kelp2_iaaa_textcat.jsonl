@@ -1,0 +1,46 @@
+{
+  "PENOLAKAN_KEBIJAKAN": {
+    "n_examples": 1439,
+    "n_categories": 4,
+    "n_coincident_examples": 719,
+    "n_single_annotation": 1,
+    "n_annotators": 2,
+    "avg_raters_per_example": 1.9986111111111111,
+    "percent_agreement": 0.808066759388039,
+    "kripp_alpha": 0.585944677368166,
+    "gwet_ac2": 0.6421160071173787
+  },
+  "DUKUNGAN_KEBIJAKAN": {
+    "n_examples": 1439,
+    "n_categories": 4,
+    "n_coincident_examples": 719,
+    "n_single_annotation": 1,
+    "n_annotators": 2,
+    "avg_raters_per_example": 1.9986111111111111,
+    "percent_agreement": 0.866481223922114,
+    "kripp_alpha": 0.4773595199127114,
+    "gwet_ac2": 0.8207801663384081
+  },
+  "KRITIK_PEMERINTAHAN": {
+    "n_examples": 1439,
+    "n_categories": 4,
+    "n_coincident_examples": 719,
+    "n_single_annotation": 1,
+    "n_annotators": 2,
+    "avg_raters_per_example": 1.9986111111111111,
+    "percent_agreement": 0.8609179415855355,
+    "kripp_alpha": 0.6181603673313208,
+    "gwet_ac2": 0.7814405523024226
+  },
+  "NETRAL": {
+    "n_examples": 1439,
+    "n_categories": 4,
+    "n_coincident_examples": 719,
+    "n_single_annotation": 1,
+    "n_annotators": 2,
+    "avg_raters_per_example": 1.9986111111111111,
+    "percent_agreement": 0.7635605006954103,
+    "kripp_alpha": 0.43788656947205634,
+    "gwet_ac2": 0.5923456908541556
+  }
+}
